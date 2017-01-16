@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<head>
+<style>
+.flex-container {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+	text-align: center;
+}
+
+.flex-container>* {
+	padding: 15px;
+	-webkit-flex: 1 100%;
+	flex: 1 100%;
+}
+
+.middlepage {
+	text-align: left;
+}
+
+header {
+	background: Blue;
+	color: white;
+}
+
+footer {
+	background: #E0FFFF;
+	color: white;
+}
+
+.nav {
+	background: #E0FFFF;
+}
+
+.nav ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.nav ul a {
+	text-decoration: none;
+}
+
+@media all and (min-width: 768px) {
+	.nav {
+		text-align: left;
+		-webkit-flex: 1 auto;
+		flex: 1 auto;
+		-webkit-order: 1;
+		order: 1;
+	}
+	.middlepage {
+		-webkit-flex: 5 0px;
+		flex: 5 0px;
+		-webkit-order: 2;
+		order: 2;
+	}
+	footer {
+		-webkit-order: 3;
+		order: 3;
+	}
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2
+}
+
+th {
+	background-color: orange;
+	color: white;
+}
+</style></head>
+<body ng-app="myApp">
+
+ <div class="flex-container">
+			<header>
+				<h1>NetLink Automation</h1>
+			</header>
+			<nav class="nav">
+				<ul>
+					<li><a href="#">TestCase</a></li>
+					<li><a href="newobject">New Object</a></li>
+					<li><a href="history">History</a></li>
+					<li><a href="admin">Admin</a></li>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+				</ul>
+			</nav>
+         </div>
+
+<div class="view-animate-container">
+   <div ng-view=""></div>
+  </div>
+
+
+<script>
+var app = angular.module("myApp", ["ngRoute"]);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "main.html",
+    })
+    .when("/newobject", {
+        templateUrl : "newobject.html",
+        controller : "newobjectCtrl"
+    })
+     .when("/admin", {
+        templateUrl : "admin.html",
+        controller : "adminCtrl"
+    })
+    .when("/history", {
+        templateUrl : "history.html",
+        controller : "historyCtrl"
+    });
+});
+app.controller("newobjectCtrl", function ($scope) {
+    $scope.msg = "I love newobjectCtrl";
+});
+app.controller("adminCtrl", function ($scope) {
+    $scope.msg = "I love adminCtrl";
+});
+app.controller("historyCtrl", function ($scope) {
+    $scope.msg = "I love historyCtrl";
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+

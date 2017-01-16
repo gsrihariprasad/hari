@@ -1,0 +1,124 @@
+<style>
+table {
+       border-collapse: collapse;
+       width: 100%;
+}
+
+th, td {
+       text-align: left;
+       padding: 8px;
+}
+
+tr:nth-child(even) {
+       background-color: #f2f2f2
+}
+
+th {
+       background-color: orange;
+       color: white;
+} 
+</style>	
+<form ng-controller="pageObjectsCtrl">
+	<div class="mydivmain">
+		<center>
+			Search:<input type="text" name="firstname" value="SiteObject"></input>
+		</center>
+
+		<pre>Page name:<input type="text" name="pageName" 	ng-model="pageName"> </input>
+		 Page Class:  <input type="text" name="pageClass" ng-model="pageClass"> </input>
+</pre>{{pageName}} <br/>{{pageClass}}
+		<div class="mydivbottom" style="float: left;">
+
+			PageAction
+		 <button ng-click="addPageActions()" style="color:blue;font-size:18px;">Add New Row Dynamically</button>
+		 <div>
+			<table style="width: 100%">
+				<tr>
+					<td style="width: 30%">Action Name:</td>
+					<td><input type="text" style="width: 90%"  ng-model="pageaction_first.actionname"></input></td>
+				</tr>
+				<tr>
+					<td style="width: 30%">Element:</td>
+					<td><input type="text" style="width: 90%"
+						 ng-model="pageaction_first.element1"/></td>
+				</tr>
+				<tr>
+					<td style="width: 30%">xpath:</td>
+					<td><input type="text" style="width: 90%"
+						  ng-model="pageaction_first.xpath1"/></td>
+				</tr>
+				<tr>
+					<td style="width: 30%">action pojo classname:</td>
+					<td><input type="text" style="width: 90%"
+						 ng-model="pageaction_first.pojoclassname" /></td>
+				</tr>
+				
+			</table>
+			</div>
+			
+			
+			 <div ng-repeat="pageaction in pageActions">
+			<table style="width: 100%">
+				<tr>
+					<td style="width: 30%">Action Name:</td>
+					<td><input type="text" style="width: 90%"  ng-model="pageaction.actionname"></input></td>
+				</tr>
+				<tr>
+					<td style="width: 30%">Element:</td>
+					<td><input type="text" style="width: 90%"
+						 ng-model="pageaction.element"/></td>
+				</tr>
+				<tr>
+					<td style="width: 30%">xpath:</td>
+					<td><input type="text" style="width: 90%"
+						  ng-model="pageaction.xpath"/></td>
+				</tr>
+				<tr>
+					<td style="width: 30%">action pojo classname:</td>
+					<td><input type="text" style="width: 90%"
+						 ng-model="pageaction.pojoclassname" /></td>
+				</tr>
+				
+			</table>
+			</div>
+			{{pageActions}} 
+		</div>
+
+		<div class="mydivbottom" style="float: left;">
+			PAGE XPATH
+			   <button ng-click="addPageXpath()" style="color:blue;font-size:18px;">Add New Row Dynamically</button>  
+            <div>  
+                <br /> 
+           <table style="width: 100%">
+				<tr>
+					<td style="width: 30%">Element:</td>
+					<td><input type="text" style="width: 100%" ng-model="pagexpath_first.element1" /></td>
+				</tr>
+				<tr>
+					<td style="width: 30%">Xpath:</td>
+					<td><input type="text" style="width: 100%" ng-model="pagexpath_first.xpath1" /></td>
+				</tr>
+				</table>
+				</div>
+            <div ng-repeat="pagexpath1 in pageXpaths">  
+                <table style="width: 100%">
+				<tr>
+					<td style="width: 30%">Element:</td>
+					<td><input type="text" style="width: 100%" ng-model="pagexpath1.element" /></td>
+				</tr>
+				<tr>
+					<td style="width: 30%">Xpath:</td>
+					<td><input type="text" style="width: 100%" ng-model="pagexpath1.xpath" /></td>
+				</tr>
+				</table>
+            </div>  
+            {{pageXpaths}}
+            <br/>  
+		</div>
+		<div style="position: absolute; bottom: 100px;">
+			<input type="submit" id="submit" value="Submit"
+				ng-click="formsubmit()" />
+		</div>
+	</div>
+
+</form>

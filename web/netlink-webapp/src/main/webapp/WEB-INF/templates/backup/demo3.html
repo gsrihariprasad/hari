@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html ng-app="myApp" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Thyme Seed Starter Manager</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" media="all" href="../css/stsm.css" th:href="@{/css/stsm.css}"/>
+  </head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	
+<body>
+
+	<div ng-controller="myCtrl">
+<div class="flex-container">
+<header>
+				<h1>NetLink Automation</h1>
+			</header>
+			<nav class="nav">
+				<ul>
+					<li><a href="#">TestCase</a></li>
+					<li><a href="#">New Object</a></li>
+					<li><a href="#">History</a></li>
+					<li><a href="#">Admin</a></li>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+				</ul>
+			</nav>
+			<div class="middlepage">
+	{{thinkworks}}
+	
+<h6> Get Objects</h6>
+
+ <select ng-model="testForm.pageName">
+<label for="pageName">pageName</label> 
+<option ng-repeat="x in thinkworks" value="{{x.pageName}}">{{x.pageName}}</option>
+</select>
+	
+	  
+	<!--   <select ng-model="testForm" ng-options="y.brand for (x, y) in thinkworks">
+</select> -->
+
+<h1>You selected: {{testForm.pageName}}</h1>
+ <!--    
+  <div ng-repeat="o in thinkworks">
+  
+
+      
+   <div ng-if="o.pageName=='SiteObject'">  
+  
+    <div ng-repeat="p in o.pageInput">
+
+			<label for="inputdata">{{p.inputData}}</label> 
+			<input type="text"
+				ng-model="inputdata" id="inputdata"></input>
+
+		</div>
+    
+    
+       </div> 
+  </div> -->
+
+<h2>Model: {{testForm.pageInput}}</h2>
+
+	  
+		<p>Net Link Automation</p>
+
+		<!--  <p th:text="${welcome}" name="" id=""></p>-->
+		<!-- <div>
+
+			<label for="inputName">inputName</label> <input type="text"
+				ng-model="inputName" id="inputName"></input>
+
+		</div>
+
+
+		<div>
+			<label for="inputdata">inputdata</label> <input type="text"
+				ng-model="inputdata" id="inputdata"></input>
+		</div> -->
+
+		<div>
+			<label for="name">testname</label> <input type="text"
+				ng-model="testForm.name" id="name"></input>
+		</div>
+
+<div>
+			<label for="description">description</label> <input type="text"
+				ng-model="testForm.description" id="description"></input>
+		</div>
+		<div>
+			<label for="siteName">siteName</label> <input type="text"
+				ng-model="testForm.siteName" id="siteName"></input>
+		</div>
+		<button ng-click="onSubmit()">try this</button>
+		<button ng-click="onsave()">onsave</button>
+		{{resdata}} {{$scope.testForm.testCaseFormInputData}}
+		{{$scope.testForm}}
+		</div>
+		</div>
+	</div>
+
+
+	
+	<script th:inline="javascript">
+	var msg = [[${welcome}]]; 
+	
+	
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function($scope, $http) {
+			$scope.welcome = {};
+			$scope.resdata = {};
+			$scope.testForm = {};
+			$scope.testForm.testCaseFormInputData = [];
+			$scope.inputName = "inputnama";
+			$scope.inputdata = "inputdata";
+				$scope.thinkworks = msg;
+			$scope.onSubmit = function() {
+
+				alert("srihari   onSubmit " + welcome);
+
+				$http.get("saveAndRunTestcases/getTestCases").success(
+						function(response) {
+							alert(response);
+							$scope.resdata = response;
+						}).error(function(response) {
+					alert(response);
+				}
+
+				)
+			}
+
+			$scope.onsave = function() {
+
+				alert("srihari  onsave");
+				$scope.testForm.testCaseFormInputData.push({
+					"inputName" : $scope.inputName,
+					"inputdata" : $scope.inputdata
+				});
+
+				$http.post("saveAndRunTestcases/saveTestCases",
+						JSON.stringify($scope.testForm)).success(
+						function(response) {
+							alert(response);
+							$scope.resdata = response;
+						}).error(function(response) {
+					alert(response);
+				}
+
+				)
+			}
+
+		});
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<style>
+td {
+	font-size: 12px;
+	padding: 3px;
+}
+
+.abc {
+	float: left;
+}
+</style>
+<body class="w3-blue">
+
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<form>
+			
+				<table border="1" ng-repeat="r in names">
+					<tr>
+						<td width="150px">
+						<input type="checkbox" name="pageName"
+							value={{pageName}} ng-checked="yes" ng-model="myVar">{{r.pageName}}
+						</td>
+
+						<td width="700px">
+							<div ng-repeat="x in r">
+								<div ng-repeat="y in x">
+									<div class="abc" ng-repeat="z in y" ng-show="myVar">
+										<table>
+											<tr>
+												<td width="40%">{{ z }} :</td>
+												<td width="60%"><input type="text" value="{{z}}">
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			
+
+
+		</form>
+
+
+
+	</div>
+	<br>
+	<br>
+	<br>
+	<input type="button" value="Save"
+		class="w3-button w3-grey w3-round-large" style="margin: 0% 0% 0% 40%">
+	<input type="button" value="Save&Execute"
+		class="w3-button w3-grey w3-round-large">
+	<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope,$filter) {
+
+    $scope.names =[{"pageInputs":[{"name":"Site ID","desc":"Site Desc"}],"pageName":"site create"},
+{"pageInputs":[{"name":"Routing ID","desc":"Routing Desc"}],"pageName":"routing create"},
+{"pageInputs":[{"name":"Enterprise ID","desc":"EnterDesc"}],"pageName":"Enterprise create"},
+{"pageInputs":[{"name":"abc ID","desc":"abc Desc","aaaaa":"aaaaaaaaa"}],"pageName":"abc create"},
+];
+
+$scope.myVar="";
+  $scope.names2=$scope.names;
+
+   $scope.$watch(function($scope)
+    { 
+              
+        $scope.names12 = $filter('filter')($scope.names2, $scope.myVar);
+    });
+  
+
+});
+</script>
+
+
+</body>
+</html>

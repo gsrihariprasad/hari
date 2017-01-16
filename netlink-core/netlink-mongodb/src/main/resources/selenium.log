@@ -1,0 +1,49 @@
+2016-10-05 15:42:04,551 [pool-1-thread-1] DEBUG Log - Retry attempt 0 running test case SiteCreation
+2016-10-05 15:42:35,349 [pool-1-thread-1] ERROR Log - Exception executing action Browser.open
+org.openqa.selenium.remote.UnreachableBrowserException: Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '2.46.0', revision: '61506a4624b13675f24581e453592342b7485d71', time: '2015-06-04 10:22:50'
+System info: host: 'DS-7071BCC43BF9', ip: '10.119.6.33', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_45'
+Driver info: driver.version: ChromeDriver
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:242)
+	at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:128)
+	at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:141)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:170)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:159)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:116)
+	at com.infor.selenium.pageobject.Browser.open(Browser.java:45)
+	at com.infor.selenium.pageobject.Browser.open(Browser.java:30)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at com.infor.selenium.test.TestStep.invokeMethod(TestStep.java:263)
+	at com.infor.selenium.test.TestStep.execute(TestStep.java:248)
+	at com.infor.selenium.test.TestSuite.setup(TestSuite.java:228)
+	at com.infor.selenium.test.TestSuite$1.run(TestSuite.java:140)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalStateException: The process has not exited yet therefore no result is available ...
+	at org.apache.commons.exec.DefaultExecuteResultHandler.getException(DefaultExecuteResultHandler.java:76)
+	at org.openqa.selenium.os.UnixProcess.checkForError(UnixProcess.java:170)
+	at org.openqa.selenium.os.CommandLine.checkForError(CommandLine.java:183)
+	at org.openqa.selenium.remote.service.DriverService.start(DriverService.java:169)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:63)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:578)
+	... 19 more
+2016-10-05 15:42:40,362 [pool-1-thread-1] ERROR Log - Exception executing action Browser.close
+java.lang.NullPointerException
+	at com.infor.selenium.pageobject.Browser.close(Browser.java:88)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at com.infor.selenium.test.TestStep.invokeMethod(TestStep.java:263)
+	at com.infor.selenium.test.TestStep.execute(TestStep.java:248)
+	at com.infor.selenium.test.TestSuite.teardown(TestSuite.java:244)
+	at com.infor.selenium.test.TestSuite$1.run(TestSuite.java:145)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2016-10-05 15:42:41,929 [main ] INFO  Log - Exiting main program

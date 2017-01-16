@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html ng-app="myApp" xmlns:th="http://www.thymeleaf.org">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+	<div ng-controller="myCtrl">
+
+	{{thinkworks}}
+	
+	</br></br>
+	
+    
+      <div ng-repeat="item in thinkworks" class="item">{{item.pageName}}
+      
+      <div>
+			<label for="pageName">{{item.pageName}}</label>
+			 <select name="pageName"
+				id={{item.pageName}} ng-model="testForm."{{item.pageName}}>
+				<option value="">please choose</option>
+				<option value={{item.pageName}}>{{item.pageName}}</option>
+				<option value={{item.pageName}}>{{item.pageName}}t</option>
+
+			</select>
+
+		</div>
+      
+      
+     
+      
+      
+      </div>
+   
+ 
+		<p>Net Link Automation</p>
+
+		<!--  <p th:text="${welcome}" name="" id=""></p>-->
+		<div>
+
+			<label for="inputName">inputName</label> <input type="text"
+				ng-model="inputName" id="inputName"></input>
+
+		</div>
+
+
+		<button ng-click="onSubmit()">try this</button>
+		<button ng-click="onsave()">onsave</button>
+		{{resdata}} {{$scope.testForm.testCaseFormInputData}}
+		{{$scope.testForm}}
+	</div>
+
+	<p>The $http service requests a page on the server, and the
+		response is set as the value of the "myWelcome" variable.</p>
+
+
+	
+	<script th:inline="javascript">
+	var msg = [[${welcome}]]; 
+	
+	
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function($scope, $http) {
+			$scope.welcome = {};
+			$scope.resdata = {};
+			$scope.testForm = {};
+			$scope.testForm.testCaseFormInputData = [];
+			$scope.inputName = "inputnama";
+			$scope.inputdata = "inputdata";
+				$scope.thinkworks = msg;
+			$scope.onSubmit = function() {
+
+				alert("srihari   onSubmit " + welcome);
+
+				$http.get("saveAndRunTestcases/getTestCases").success(
+						function(response) {
+							alert(response);
+							$scope.resdata = response;
+						}).error(function(response) {
+					alert(response);
+				}
+
+				)
+			}
+
+			$scope.onsave = function() {
+
+				alert("srihari  onsave");
+				$scope.testForm.testCaseFormInputData.push({
+					"inputName" : $scope.inputName,
+					"inputdata" : $scope.inputdata
+				});
+
+				$http.post("saveAndRunTestcases/saveTestCases",
+						JSON.stringify($scope.testForm)).success(
+						function(response) {
+							alert(response);
+							$scope.resdata = response;
+						}).error(function(response) {
+					alert(response);
+				}
+
+				)
+			}
+
+		});
+	</script>
+
+</body>
+</html>

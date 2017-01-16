@@ -1,0 +1,197 @@
+
+
+<body>
+	<div ng-controller="myCtrl">
+		<div class="flex-container">
+			<header>
+				<h1>NetLink Automation</h1>
+			</header>
+			
+			<div class="middlepage">
+				<h2>Select Test Cases</h2>
+				<!--<table><tr><th>TestCaseId</th><th>ObjectName</th><th colspan="2">TestData</th></tr><tr><td>1</td><td>SiteObject-Create</td><td>$100</td><td>$100</td></tr></table>
+-->
+				<!-- 	<div>
+						<div>
+							<label for="pageName">pageName</label>
+							<select name="pageName"
+
+                           id="pageName" ng-model="testForm.pageName">
+								<option value="">please choose</option>
+								<option value="WareHouseObject">WareHouseObject</option>
+								<option value="SiteObject">SiteObject</option>
+							</select>
+						</div>
+						<label for="inputName">inputName</label>
+						<input type="text"
+
+                           ng-model="inputName" id="inputName"></input>
+					</div>
+					
+					 -->
+				
+			
+
+				{{resdata}} {{$scope.testForm.testCaseFormInputData}}
+
+				{{$scope.testForm}}
+
+
+
+				<h1>You selected: {{testForm.pageName}}</h1>
+
+
+
+
+				<div><!-- ng-change="update()" -->
+					<label for="pageName">pageName</label> <select name="pageName" ng-change="update()"
+						id="pageName" ng-model="testForm.pageName" >
+						<option ng-repeat="tt in thinkworks" value="{{tt.pageName}}" >{{tt.pageName}}</option>
+						<!-- <option value="">please choose</option>
+								<option value="WareHouseObject">WareHouseObject</option>
+								<option value="SiteObject">SiteObject</option> -->
+					</select>
+				</div>
+				<div ng-repeat="o in thinkworks">
+                 <!--  <input type="hidden" name="checkName" ng-model="checkName" ng-value="o.pageName" />  -->
+					<!-- <div ng-if= "result" > -->
+						  <div ng-if="o.pageName=='SiteObject'">  
+					<!-- 	<div ng-repeat="p in o.pageInput">
+
+							<label for="inputdata">{{p.inputData}}</label> <input type="text"
+								ng-model="inputdata" id="inputdata"></input>
+
+						</div> -->
+                  <!--  <div>
+					<label for="inputdata">inputdata</label> <input type="text"
+						ng-model="inputdata" id="inputdata"></input>
+			    	</div> -->
+				<div>
+					<label for="name">name</label> <input type="text"
+						ng-model="testForm.name" id="name"></input>
+				</div>
+         <div>
+					<label for="siteName">siteName</label> <input type="text"
+						ng-model="testForm.siteName" id="siteName"></input>
+				</div>
+				<div>
+					<label for="description">description</label> <input type="text"
+						ng-model="testForm.description" id="description"></input>
+				</div>
+					</div>
+				</div>
+	<button ng-click="onSubmit()">try this</button>
+				<button ng-click="onsave()">onsave</button>
+			</div>
+		</div>
+	</div>
+	<script th:inline="javascript">
+	var msg = [[${welcome}]]; 
+
+              var app = angular.module('myApp', []);
+
+              app.controller('myCtrl', function($scope, $http) {
+            	     
+            	  $scope.checkName="";
+                     $scope.afterSelecting={};
+                     $scope.welcome = {};
+
+                     $scope.resdata = {};
+
+                     $scope.testForm = {};
+
+                     $scope.testForm.testCaseFormInputData = [];
+
+                     $scope.inputName = "inputnama";
+
+                     $scope.inputdata = "inputdata";
+                 	$scope.thinkworks = msg;
+                    
+
+                     $scope.onSubmit = function() {
+
+ 
+
+                           alert("srihari   onSubmit " + welcome);
+
+ 
+
+                           $http.get("saveAndRunTestcases/getTestCases").success(
+
+                                         function(response) {
+
+                                                alert(response);
+
+                                                $scope.resdata = response;
+
+                                         }).error(function(response) {
+
+                                  alert(response);
+
+                           }
+
+ 
+
+                           )
+
+                     }
+
+ 
+
+                     $scope.onsave = function() {
+
+ 
+
+                           alert("srihari  onsave");
+
+                          /*  $scope.testForm.testCaseFormInputData.push({
+
+                                  "inputName" : $scope.inputName,
+
+                                  "inputdata" : $scope.inputdata
+
+                           });
+ */
+ 
+
+                           $http.post("saveAndRunTestcases/saveTestCases",
+
+                                         JSON.stringify($scope.testForm)).success(
+
+                                         function(response) {
+
+                                                alert(response);
+
+                                                $scope.resdata = response;
+
+                                         }).error(function(response) {
+
+                                  alert(response);
+
+                           }
+
+ 
+
+                           )
+
+                     }
+                     $scope.result={};
+                    
+                     $scope.update = function() {
+                    	 alert("sRI");
+                    	 $scope.thinkworks2=$scope.thinkworks;                   	 
+                    	 
+                    	alert( $scope.checkName);
+                    	alert("1"+ $scope.thinkworks2.pageName);
+                    		  $scope.result = angular.equals(checkName, $scope.testForm.pageName);
+                    		
+                    	 
+                    	
+                    	
+                    	}
+
+              });
+
+       </script>
+</body>
+

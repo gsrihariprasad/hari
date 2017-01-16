@@ -1,0 +1,48 @@
+	
+<style>
+.Row
+{
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+.Column
+{
+    display: table-cell;
+    background-color: #7D6608; /*Optional*/
+}
+.droptarget {  
+  overflow: auto;
+   width: 500px; 
+    height: 335px;
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+}
+.droptargetright {
+     margin: 15px;
+    padding: 10px;
+	overflow: auto
+ }
+</style>
+<form id="appendto" ng-controller="suitdragCtl">
+
+<div style="width: 70%;">
+<p id="demo"></p>
+<div class="droptarget" id="dragData" style="float:left; width: 35%">
+<div ng-repeat="pagedata in resdata track by $index">
+  <div class="Row" draggable="true" id="{{pagedata.pageName}}">
+     <div class="Column">{{pagedata.pageName}}</div>
+ </div>    
+</div>
+</div>
+
+<div class="droptargetright" id="droppedDataparent" style="float:right; width: 35%">
+<div class="droptarget" id="droppedData"></div>
+</div>
+
+</div>
+ <input type="submit" id="submit1" value="Submit" ng-click="submit()"></input>
+</form>
+	

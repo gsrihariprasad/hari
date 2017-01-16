@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Thymeleaf tutorial: exercise 12</title>
+        <link rel="stylesheet" href="../../../css/main-static.css" th:href="@{/css/main.css}" />
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <h1>Thymeleaf tutorial - Answer for exercise 12: forms</h1>
+        <h2>Customer edition</h2>
+        <!-- 
+            Set the action attribute to "/exercise12/saveCustomer.html", and use
+            th:object to bind the ${customer} variable as the form-backing bean. 
+        -->
+        <form action="saveAndRunTestcases" th:action="@{/saveAndRunTestcases}" th:object="${testCaseForm}" method="post">
+   
+   <input type="text" id="inputName" name="inputName" th:field="*{inputName}" th:value="*{inputName}"/>
+     <input type="submit" id="doUpdate" name="_eventId_updateData" value="Update now!" />
+</form>
+    </body>
+</html>

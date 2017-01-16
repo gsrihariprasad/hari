@@ -1,0 +1,134 @@
+
+.abc {
+       float: left;
+}
+
+.flex-container {
+       display: -webkit-flex;
+       display: flex;
+       -webkit-flex-flow: row wrap;
+       flex-flow: row wrap;
+       text-align: center;
+}
+
+.flex-container>* {
+       padding: 15px;
+       -webkit-flex: 1 100%;
+       flex: 1 100%;
+}
+
+.middlepage {
+       text-align: left;
+       background-color: cornsilk;
+	   width: 90%;
+	    height:85%;
+}
+
+header {
+       background: #edba78;
+	    opacity: 1;
+    filter: Alpha(opacity=1);
+       color: brown;
+}
+
+footer {
+       background: #E0FFFF;
+       color: brown;
+}
+
+.nav {
+       background: #f6ddbc;
+	    width: 5%;
+		 height:85%;
+		 padding: 40px; 
+		 }
+
+.nav ul {
+       list-style-type: none;
+       padding: 0;
+	  
+}
+
+.nav ul a {
+       text-decoration: none;
+}
+
+@media all and (min-width: 768px) {
+       .nav {
+              text-align: left;
+              -webkit-flex: 1 auto;
+              flex: 1 auto;
+              -webkit-order: 1;
+              order: 1;
+			   width: 5%;
+			    height:85%;
+       }
+       .middlepage {
+              -webkit-flex: 5 0px;
+              flex: 5 0px;
+              -webkit-order: 2;
+              order: 2;
+			  width: 95%;
+			  height:85%;
+       }
+       footer {
+              -webkit-order: 3;
+              order: 3;
+       }
+}
+
+$bgColor: #f4513d;
+$color: #f2da5b;
+
+@-webkit-keyframes rattle {
+   0% {
+    -webkit-transform: translateX(-2px); 
+     letter-spacing: -0.012em;
+   }
+  
+  25% {
+    -webkit-transform: translateY(-2px) rotate(-1deg);
+    font-size: 6.9999em;
+  }
+  
+  50% {
+    -webkit-transform: translateX(1px);
+    text-shadow: 0 1px 0 #000, 
+      1px 1px 0 $bgColor,
+      2px 2px 0 $color,
+      -3px -5px 0 $bgColor,
+      -4px -6px 0 rgba($color, 0.6);
+  }
+  
+  75% {
+   -webkit-transform: translateY(1px);
+  }
+  
+  100% {
+   -webkit-transform: translateY(-2px); 
+  }
+}
+
+.multi-ani {
+  -webkit-animation: rattle 0.08s infinite alternate; 
+  color: $color;
+  font-family: 'Jolly Lodger', cursive;
+  font-size: 7em;
+  text-align: center;
+  text-shadow: 0 4px 0 #000, 
+    -2px -2px 0 $bgColor,
+    -3px -3px 0 $color;
+}
+
+body {
+ background-color: $bgColor; 
+}
+
+.multi-ani {
+    -webkit-animation: rattle 0.08s infinite alternate;
+    color: $color;
+    font-family: 'Jolly Lodger', cursive;
+    font-size: 3em;
+    text-align: center;
+    text-shadow: 0 4px 0 #000, -2px -2px 0 $bgColor, -3px -3px 0 $color;
+}
